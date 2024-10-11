@@ -6,5 +6,5 @@ vegaEmbed("#potato", vg_1).then(function(result) {
 var vg_2 = "CattleMap.json";
 vegaEmbed("#cattle", vg_2, {"actions": false}).then(function(result){}).catch(console.error);
 
-var vg_3 = "Dairyline.json";
+var vg_3 = "DairyLine.json";
 vegaEmbed("#dairy", vg_3, {"actions": false}).then(function(result){}).catch(console.error);
