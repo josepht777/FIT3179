@@ -1,0 +1,45 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/2020-2022%20Potatoes%20Hectares.csv",
+      "format": {"type": "csv"}
+    },
+    "vconcat": [
+      {
+        "hconcat": [
+          {
+            "width": 400,
+            "height": 250,
+            "title": {
+              "text": "Potato Cultivation by Region",
+              "dy": -15
+            },
+            "layer": [
+              {
+                "mark": "bar",
+                "encoding": {
+                  "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+                  "y": {"field": "Hectares", "type": "quantitative", "title": "Hectares"},
+                  "color": {"field": "Region", "type": "nominal", "legend": {"title": "Region"}},
+                  "tooltip": [
+                    {"field": "Region", "type": "nominal", "title": "Region"},
+                    {"field": "Year", "type": "ordinal", "title": "Year"},
+                    {"field": "Hectares", "type": "quantitative", "title": "Hectares"}
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "style": {
+        "cell": {
+          "stroke": "transparent"
+        }
+      },
+      "font": "Arial",
+      "title": {"fontSize": 17}
+    }
+  }
