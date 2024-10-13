@@ -1,0 +1,98 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Open Sans';
+    color: #333;
+  }
+
+  body {
+    background-color: #e5f5e0;
+  }
+
+  .page {
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
+  /* Subheading styling */
+  .subheading {
+    background-color: #a1d99b;
+    padding: 10px 0;
+    color: #000000;
+  }
+
+  /* Left text */
+  .left {
+    text-align: left;
+  }
+  
+  .pure-g {
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 46px;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  
+  .small-font {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  
+  .vis-container {
+    margin: 0 auto;
+  }
+  
+  .australian-capital-territory{
+    color: #E69F00;
+    font-weight: bold;
+  }
+
+  .new-south-wales{
+    color: #56B4E9;
+    font-weight: bold;
+  }
+
+  .northern-territory{
+    color: #009E73;
+    font-weight: bold;
+  }
+
+  .queensland{
+    color: #F0E442;
+    font-weight: bold;
+  }
+
+  .south-australia{
+    color: #0072B2;
+    font-weight: bold;
+  }
+
+  .tasmania{
+    color: #D55E00;
+    font-weight: bold;
+  }
+
+  .victoria{
+    color: #CC79A7;
+    font-weight: bold;
+  }
+
+  .western-australia{
+    color: #999999;
+    font-weight: bold;
+  }
