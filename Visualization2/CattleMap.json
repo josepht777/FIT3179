@@ -1,86 +1,107 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "vconcat": [
-      {
-        "width": 600,
-        "height": 400,
-        "title": {
-          "text": "Cattle Numbers by Region (2020-2022)"
-        },
-        "data": {
-          "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/STE_2021_AUST_GDA2020%20(2).json",
-          "format": { "type": "topojson", "feature": "STE_2021_AUST_GDA2020" }
-        },
-        "projection": {
-          "type": "equirectangular"
-        },
-        "layer": [
-          {
-            "mark": {
-              "type": "geoshape",
-              "fill": "#ddd",
-              "stroke": "white",
-              "strokeWidth": 1.5
-            },
-            "encoding": {
-              "tooltip": {"field": "properties.STE_NAME21", "title": "Region"}
-            }
-          },
-          {
-            "transform": [
-              {
-                "lookup": "properties.STE_NAME21",
-                "from": {
-                  "data": {
-                    "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/2020-2022%20Cattle.csv",
-                    "format": { "type": "csv" }
-                  },
-                  "key": "Region",
-                  "fields": ["Year", "Number"]
-                }
-              },
-              {
-                "calculate": "replace(datum.Number, ',', '')",
-                "as": "CattleNumber"
-              },
-              {
-                "calculate": "toNumber(datum.CattleNumber)",
-                "as": "CattleNumber"
-              },
-              {
-                "calculate": "datum.CattleNumber / 1000000",
-                "as": "CattleDensity"
-              }
-            ],
-            "mark": {"type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5, "cursor": "pointer"},
-            "encoding": {
-              "color": {
-                "field": "CattleDensity",
-                "type": "quantitative",
-                "scale": {
-                  "type": "threshold",
-                  "domain": [0, 1, 2, 3, 4],
-                  "range": ["#ffeda0", "#feb24c", "#fd8d3c", "#f03b20", "#bd0026"]  
-                },
-                "legend": {"title": "Cattle per Million"}
-              },
-              "tooltip": [
-                {"field": "properties.STE_NAME21", "type": "nominal", "title": "Region"},
-                {"field": "CattleNumber", "type": "quantitative", "title": "Number of Cattle"}
-              ]
-            }
-          }
-        ]
-      }
-    ],
-    "config": {
-      "style": {
-        "cell": {
-          "stroke": "transparent"
-        }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "vconcat": [
+    {
+      "width": 900,
+      "height": 500,
+      "title": {
+        "text": "Cattle Numbers by Region (2020-2022)"
       },
-      "font": "Arial",
-      "title": {"fontSize": 17}
+      "data": {
+        "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/STE_2021_AUST_GDA2020%20(2).json",
+        "format": { "type": "topojson", "feature": "STE_2021_AUST_GDA2020" }
+      },
+      "projection": {
+        "type": "equirectangular"
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "geoshape",
+            "fill": "#ddd",
+            "stroke": "white",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "tooltip": {"field": "properties.STE_NAME21", "title": "Region"}
+          }
+        },
+        {
+          "transform": [
+            {
+              "lookup": "properties.STE_NAME21",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/2020-2022%20Cattle.csv",
+                  "format": { "type": "csv" }
+                },
+                "key": "Region",
+                "fields": ["Year", "Number"]
+              }
+            },
+            {
+              "lookup": "properties.STE_NAME21",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/Australian%20States%20by%20Square%20Km.csv",
+                  "format": { "type": "csv" }
+                },
+                "key": "Region",
+                "fields": ["Square km"]
+              }
+            },
+            {
+              "calculate": "replace(datum.Number, ',', '')",
+              "as": "CattleNumber"
+            },
+            {
+              "calculate": "toNumber(datum.CattleNumber)",
+              "as": "CattleNumber"
+            },
+            {
+              "calculate": "datum.CattleNumber / datum['Square km']",
+              "as": "CattleDensityPerSqKm"
+            }
+          ],
+          "mark": {"type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5, "cursor": "pointer"},
+          "encoding": {
+            "color": {
+              "field": "CattleDensityPerSqKm",
+              "type": "quantitative",
+              "scale": {
+                "type": "threshold",
+                "domain": [0, 1, 2, 3, 4],
+                "range": ["#ffeda0", "#feb24c", "#fd8d3c", "#f03b20", "#bd0026"]  
+              },
+              "legend": {"title": "Cattle per Square Km"}
+            },
+            "tooltip": [
+              {"field": "properties.STE_NAME21", "type": "nominal", "title": "Region"},
+              {
+                "field": "CattleNumber",
+                "type": "quantitative",
+                "title": "Number of Cattle",
+                "format": ","
+              },
+              {
+                "field": "CattleDensityPerSqKm",
+                "type": "quantitative",
+                "title": "Cattle per Square Km",
+                "format": ".2f"
+              }
+            ]
+          }
+        }
+      ]
     }
+  ],
+  "config": {
+    "style": {
+      "cell": {
+        "stroke": "transparent"
+      }
+    },
+    "font": "Arial",
+    "title": {"fontSize": 17}
   }
-  
+}
