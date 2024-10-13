@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agricultural Commodities in Australia</title>
+
+  <!-- Import Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+    integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+  <!-- Import custom font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="page">
+    <!-- HEADING -->
+    <div class="pure-g">
+      <div class="pure-u-1-1 center">
+        <h1 style="text-align: center;">Agricultural Commodities in Australia</h1>
+      </div>
+    </div>
+
+    <!-- Subheading 1 -->
+    <div class="pure-g subheading">
+      <div class="pure-u-1-1 center">
+        <h2>Potato Cultivation And Dairy Production Over Time</h2>
+      </div>
+    </div>
+
+    <!-- FIRST ROW OF VISUALISATIONS -->
+    <div class="pure-g">
+      <div class="pure-u-1-2 center">
+        <div id="potato" class="medium-height"></div> <!-- PotatoChart -->
+      </div>
+      <div class="pure-u-1-2 center">
+        <div id="dairy" class="medium-height"></div> <!-- DairyLine -->
+      </div>
+    </div>
+
+    <!-- Description for first row -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <p class="small-font"><span class="south-australia">South Australia</span> has been a significant region for the production of 
+          potatoes as it boasts the largest plot of land between 2020-2021
+          but in 2022, <span class ="tasmania">Tasmania</span> overtook <span class="south-australia">South Australia</span> in terms of potato production by having the largest plot of land for the production of potatoes. 
+          However, <span class ="australian-capital-territory">Australian Capital Territory</span> and <span class ="northern-territory">Northern Territory</span> does not own any plot of land for potato production, thus making them the 
+          lowest producers in terms of potato in Australia.
+        </p>
+      </div>
+      <div class="pure-u-1-2">
+        <p class="small-font"><span class ="victoria">Victoria</span> has always been leading Australia in terms of Dairy Production from 1964-2022. Then, <span class ="new-south-wales">New South Wales</span>  would typically lead after <span class ="victoria">Victoria</span> and <span class ="queensland">Queensland</span> after, followed by <span class ="tasmania">Tasmania</span>, <span class ="western-australia">Western Australia</span> and <span class ="australian-capital-territory">Australian Capital Territory</span>.
+          However, between 1997-2008, <span class ="queensland">Queensland's</span> amount of dairy dipped, resulting in lower Dairy Production, allowing <span class ="tasmania">Tasmania</span> to take their place as the second highest region in Dairy Production, having the largest increase from 1964-2022 out of 
+          every other region.
+        </p>
+      </div>
+    </div>
+
+    <!-- Subheading 2 -->
+    <div class="pure-g subheading">
+      <div class="pure-u-1-1 center">
+        <h2>Cattle Numbers in Each Region Within Australia</h2>
+      </div>
+    </div>
+
+    <!-- CattleMap Centered -->
+    <div class="pure-g">
+      <div class="pure-u-1-1" style="display: flex; justify-content: center; align-items: center;">
+        <div id="cattle"></div> <!-- Centered CattleMap -->
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <p class="small-font">While examining the total number of cattles in Australia, <span class ="queensland">Queensland</span> is shown to have the highest amount of Cattles in the region, followed by <span class ="new-south-wales">New South Wales</span>, <span class ="victoria">Victoria</span>, <span class ="western-australia">Western Australia</span>, <span class ="northern-territory">Northern Territory</span>, <span class="south-australia">South Australia</span> and <span class ="tasmania">Tasmania</span>.
+          However, in terms of number of cattle per square km, <span class ="victoria">Victoria</span> has the highest number of cattle per square km, followed by <span class ="tasmania">Tasmania</span>, <span class ="queensland">Queensland</span>, <span class ="new-south-wales">New South Wales</span>, <span class ="northern-territory">Northern Territory</span>, <span class="south-australia">South Australia</span> and <span class ="western-australia">Western Australia</span>,
+        showing the differences in Cattle Density in each region </p>
+      </div>
+    </div>   
+      
+
+    <!-- Subheading 3 -->
+    <div class="pure-g subheading">
+        <div class="pure-u-1-1 center">
+          <h2>Wheat Cultivation and Barley Production in each Region </h2>
+        </div>
+      </div>
+
+    <!-- SECOND ROW OF VISUALISATIONS -->
+    <div class="pure-g">
+    <div class="pure-u-1-2 center">
+        <div id="area" class="large-height"></div> <!-- AreaChart -->
+      </div>
+      <div class="pure-u-1-2 center">
+        <div id="donut" class="medium-height"></div> <!-- Donut -->
+      </div>
+    </div>
+
+    <!-- Description for second row -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <p class="small-font">The cultivation of wheat in Australia is always changing in each Region. Notably, <span class ="australian-capital-territory">Australian Capital Territory</span> had a large plot of land to cultivate wheat in 2012 but a sharp decrease was seen in 2015. For the <span class ="northern-territory">Northern Territory</span>,
+          cultivation of wheat was only possible from 2015 to 2017 as their plot of land was available in this time period. As for <span class ="tasmania">Tasmania</span>, it experienced a sharp decrease in land from 2018-2019, only increasing from 2019-2022.
+        </p>
+      </div>
+      <div class="pure-u-1-2">
+        <p class="small-font"> Barley Production varies in each region in Australia. Notably, <span class ="victoria">Victoria</span> was rank one in terms of barley production up to 1907 until South Australia took over in 1908 up to 1973 where <span class ="western-australia">Western Australia</span>
+          becomes the major producer for Barley in Australia. The only regions that does not produce barley is <span class ="australian-capital-territory">Australian Capital Territory</span> and <span class ="northern-territory">Northern Territory</span>.
+        </p>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font center">
+        <p>This visualization was created by Joseph Ti. Data sources: <a
+            href="https://www.abs.gov.au/statistics/industry/agriculture/agricultural-commodities-australia/2021-22" target="_blank">ABS</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embed Vega-Lite Visualizations -->
+  <script>
+    var vg_1 = "PotatoChart.json";
+    vegaEmbed("#potato", vg_1, {"actions": false}).then(function(result) {}).catch(console.error);
+
+    var vg_2 = "CattleMap.json";
+    vegaEmbed("#cattle", vg_2, {"actions": false}).then(function(result){}).catch(console.error);
+
+    var vg_3 = "Dairyline.json";
+    vegaEmbed("#dairy", vg_3, {"actions": false}).then(function(result){}).catch(console.error);
+
+    var vg_4 = "Donut.json";
+    vegaEmbed("#donut", vg_4, {"actions": false}).then(function(result){}).catch(console.error);
+
+    var vg_5 = "Area.json";
+    vegaEmbed("#area", vg_5, {"actions": false}).then(function(result){}).catch(console.error);
+  </script>
+</body>
+
+</html>
