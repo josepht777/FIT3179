@@ -1,0 +1,93 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "subtitle": "Select a region using the dropdown box",
+    "text": "Wheat Cultivation by Region",
+    "dx": -200,
+    "align": "left"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/2012-2022%20Wheat%20Hectares.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "filter": "Region_selection == null || datum.Region == Region_selection"
+    }
+  ],
+  "params": [
+    {
+      "name": "Region_selection",
+      "value": "Australian Capital Territory",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Australian Capital Territory",
+          "New South Wales",
+          "Northern Territory",
+          "Queensland",
+          "South Australia",
+          "Tasmania",
+          "Victoria",
+          "Western Australia"
+        ],
+        "name": "Select Region: "
+      }
+    }
+  ],
+  "width": 400,
+  "mark": "area",
+  "encoding": {
+    "x": {
+      "field": "Years",
+      "type": "temporal",
+      "axis": {
+        "title": "Years"
+      }
+    },
+    "y": {
+      "field": "Hectares",
+      "type": "quantitative",
+      "axis": {
+        "title": "Wheat Production (Hectares)"
+      }
+    },
+    "color": {
+      "field": "Region",
+      "type": "nominal",
+      "legend": {
+        "title": "Region",
+        "orient": "bottom",
+        "columns": 3   
+      },
+      "scale": {
+        "domain": [
+          "Australian Capital Territory",
+          "New South Wales",
+          "Northern Territory",
+          "Queensland",
+          "South Australia",
+          "Tasmania",
+          "Victoria",
+          "Western Australia"
+        ],
+        "range": [
+          "#E69F00",
+          "#56B4E9",
+          "#009E73",
+          "#F0E442",
+          "#0072B2",
+          "#D55E00",
+          "#CC79A7",
+          "#999999"
+        ]
+      }
+    }
+  },
+  "config": {
+    "font": "Arial",
+    "title": {
+      "fontSize": 17       
+    }
+  }
+}

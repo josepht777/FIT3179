@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "subtitle": "Use the slider to see changes from year to year", 
+    "text": "Barley Production by Region",
+    "dx": -200,
+    "align": "left"
+  },
+  "width": 400,
+  "height": 270,
+  "description": "A donut chart for Barley by Region.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/1861-2022%20Barley%20Hectares.csv",  
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(datum.Years)",
+      "as": "YearNumeric"
+    },
+    {
+      "filter": "datum.YearNumeric == yearSelector"
+    }
+  ],
+  "mark": {"type": "arc", "innerRadius": 50},
+  "encoding": {
+    "theta": {"field": "Hectares", "type": "quantitative"},
+    "color": {
+      "field": "Region",
+      "type": "nominal",
+      "legend": {"title": "Region", "orient": "bottom", "columns": 3},
+      "scale": {
+        "range": [
+          "#E69F00",  
+          "#56B4E9",  
+          "#009E73",  
+          "#F0E442",  
+          "#0072B2",  
+          "#D55E00",  
+          "#CC79A7",  
+          "#999999"
+        ]
+      }
+    },
+    "tooltip": [
+      {"field": "Region", "type": "nominal", "title": "Region"},
+      {"field": "Hectares", "type": "quantitative", "title": "Tonnes", "format": ","}
+    ]
+  },
+  "params": [
+    {
+      "name": "yearSelector",
+      "value": 2022,  
+      "bind": {
+        "input": "range",
+        "min": 1861,
+        "max": 2022,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "config": {
+    "font": "Arial",
+    "title": {
+      "fontSize": 17       
+    }
+  }
+}
