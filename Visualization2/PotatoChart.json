@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/josepht777/FIT3179/refs/heads/main/Visualization2/2020-2022%20Potatoes%20Hectares.csv",
+    "format": {"type": "csv"}
+  },
+  "width": 400,
+  "height": 250,
+  "title": {
+    "subtitle": "Click on the legend icon to filter by region", 
+    "text" : "Potato Cultivation by Region",
+    "dx" : -200,
+    "align": "left"
+    },
+  "mark": "bar",
+  "transform": [
+    {"filter": "datum.Region != 'Northern Territory'"},  
+    {"filter": "datum.Region != 'Australian Capital Territory'"} 
+  ],
+  "params": [
+{
+"name": "regionSelect",
+"select": {
+"type": "interval",
+"fields": ["Region"]
+},
+"bind": "legend"
+}
+],
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {"labelAngle": 0}
+    }, 
+    "y": {
+      "field": "Hectares",
+      "type": "quantitative",
+      "title": "Hectares"
+    },
+    "xOffset": {"field": "Region"},  
+    "color": {
+      "field": "Region",
+      "type": "nominal",
+      "legend": {"title": "Region", "orient": "bottom", "columns": 3},
+      "scale": {
+        "domain": ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia" ],
+        "range": [
+            "#E69F00",  
+            "#56B4E9",  
+            "#009E73",  
+            "#F0E442",  
+            "#0072B2",  
+            "#D55E00",  
+            "#CC79A7",  
+            "#999999"   
+          ]
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "regionSelect",  
+        "value": 1                    
+      },
+      "value": 0.3                     
+    },
+    "tooltip": [
+      {"field": "Region", "type": "nominal", "title": "Region"},
+      {"field": "Year", "type": "ordinal", "title": "Year"},
+      {"field": "Hectares", "type": "quantitative", "title": "Hectares", "format": ","}
+    ]
+  },
+  "config": {
+    "style": {
+      "cell": {
+        "stroke": "transparent"
+      }
+    },
+    "font": "Arial",
+    "title": {"fontSize": 17}
+  }
+}
